@@ -1,4 +1,4 @@
-const app = () => {
+const game = (gameContainer = document.body) => {
   const generatePlayingField = (size = 4) => {
     return ``;
   };
@@ -12,24 +12,72 @@ const app = () => {
     down: 40,
   };
 
+  const tableElement = gameContainer.querySelector('table');
+  const { cellIndex, parentElement: { rowIndex } } = tableElement.querySelector('.table-active');
+  let active = { x: cellIndex, y: rowIndex };
+  
   const keyHandler = ({ keyCode }) => {
     switch (keyCode) {
-      case keys.right:
-        console.log('right');
+      case keys.right: {
+        const activeElement = tableElement.rows[active.y].cells[active.x];
+        const newX = active.x - 1;
+        const newActiveElement = tableElement.rows[active.y].cells[newX];
+        if (!newActiveElement) {
+          return;
+        }
+        activeElement.classList.remove('table-active');
+        newActiveElement.classList.add('table-active');
+        activeElement.textContent = newActiveElement.textContent;
+        newActiveElement.textContent = '';
+        active.x = newX;
         break;
-      case keys.down:
-        console.log('down');
+      }
+      case keys.down: {
+        const activeElement = tableElement.rows[active.y].cells[active.x];
+        const newY = active.y - 1;
+        const newActiveElement = (tableElement.rows[newY] || { cells: {} }).cells[active.x];
+        if (!newActiveElement) {
+          return;
+        }
+        activeElement.classList.remove('table-active');
+        newActiveElement.classList.add('table-active');
+        activeElement.textContent = newActiveElement.textContent;
+        newActiveElement.textContent = '';
+        active.y = newY;
         break;
-      case keys.left:
-        console.log('left');
+      }
+      case keys.left: {
+        const activeElement = tableElement.rows[active.y].cells[active.x];
+        const newX = active.x + 1;
+        const newActiveElement = tableElement.rows[active.y].cells[newX];
+        if (!newActiveElement) {
+          return;
+        }
+        activeElement.classList.remove('table-active');
+        newActiveElement.classList.add('table-active');
+        activeElement.textContent = newActiveElement.textContent;
+        newActiveElement.textContent = '';
+        active.x = newX;
         break;
-      case keys.up:
-        console.log('up');
+      }
+      case keys.up: {
+        const activeElement = tableElement.rows[active.y].cells[active.x];
+        const newY = active.y + 1;
+        const newActiveElement = (tableElement.rows[newY] || { cells: {} }).cells[active.x];
+        if (!newActiveElement) {
+          return;
+        }
+        activeElement.classList.remove('table-active');
+        newActiveElement.classList.add('table-active');
+        activeElement.textContent = newActiveElement.textContent;
+        newActiveElement.textContent = '';
+        active.y = newY;
         break;
+      }
     }
   };
 
   window.addEventListener('keydown', keyHandler);
 };
 
-app();
+game(document.querySelector('.game'));
