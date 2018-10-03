@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fifteen-puzzle</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      min-height: 100%;
+      margin: 0;
+    }
+
+    .game {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .game__field {
+      flex: none;
+    }
+
+    .game__field-cell {
+      border: 1px solid #000;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="game">
+    <table class="game__field">
+      <tr>
+        <td class="game__field-cell">10</td>
+        <td class="game__field-cell">11</td>
+        <td class="game__field-cell">6</td>
+        <td class="game__field-cell">4</td>
+      </tr>
+      <tr>
+        <td class="game__field-cell">14</td>
+        <td class="game__field-cell">2</td>
+        <td class="game__field-cell">12</td>
+        <td class="game__field-cell">1</td>
+      </tr>
+      <tr>
+        <td class="game__field-cell">3</td>
+        <td class="game__field-cell">13</td>
+        <td class="game__field-cell">9</td>
+        <td class="game__field-cell">8</td>
+      </tr>
+      <tr>
+        <td class="game__field-cell">5</td>
+        <td class="game__field-cell">7</td>
+        <td class="game__field-cell">15</td>
+        <td class="game__field-cell game__field-cell--empty"></td>
+      </tr>
+    </table>
+    <div class="game__explain">
+        Use the arrow keys (←, →, ↑, ↓) to move
+    </div>
+  </div>
+  <script src="./game.js"></script>
+</body>
+</html>
