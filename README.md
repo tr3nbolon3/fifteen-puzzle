@@ -1,2 +1,2 @@
 # Fifteen-puzzle (Пятнашки)
-Demo: fifteen--z.surge.sh
+Demo: http://fifteen-puzzzle.surge.sh
