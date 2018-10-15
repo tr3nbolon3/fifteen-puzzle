@@ -16,9 +16,29 @@ class Game {
 
     this.currentPosition = { x: cellIndex, y: rowIndex };
 
+    this.table.addEventListener('mousedown', ({ target }) => {
+      const cell = target.closest('.game__field-cell');
+      if (!cell) {
+        return;
+      }
+      this.handleMouseDown(cell);
+    });
+
     window.addEventListener('keydown', ({ key }) => {
       this.handleKeyDown(key);
     });
+  }
+
+  handleMouseDown(cell) {
+    const { x, y } = this.currentPosition;
+    const { cellIndex, parentElement: { rowIndex } } = cell;
+    const newPosition = { x: cellIndex, y: rowIndex };
+
+    if (Math.abs(x - cellIndex) + Math.abs(y - rowIndex) !== 1) {
+      return;
+    }
+
+    this.changePosition(newPosition);
   }
 
   handleKeyDown(key) {
@@ -46,15 +66,20 @@ class Game {
     if (row) {
       const cell = row.cells[newPosition.x];
       if (cell) {
-        const currentEmptyCell = this.table.rows[y].cells[x];
-        const newEmptyCell = this.table.rows[newPosition.y].cells[newPosition.x];
-        currentEmptyCell.textContent = newEmptyCell.textContent;
-        currentEmptyCell.classList.remove(this.emptyCellClassName);
-        newEmptyCell.classList.add(this.emptyCellClassName);
-        newEmptyCell.textContent = '';
-        this.currentPosition = newPosition;
+        this.changePosition(newPosition);
       }
     }
+  }
+
+  changePosition(newPosition) {
+    const { x, y } = this.currentPosition;
+    const currentEmptyCell = this.table.rows[y].cells[x];
+    const newEmptyCell = this.table.rows[newPosition.y].cells[newPosition.x];
+    currentEmptyCell.textContent = newEmptyCell.textContent;
+    currentEmptyCell.classList.remove(this.emptyCellClassName);
+    newEmptyCell.classList.add(this.emptyCellClassName);
+    newEmptyCell.textContent = '';
+    this.currentPosition = newPosition;
   }
 };
 
