@@ -34,7 +34,8 @@ class Game {
     const { cellIndex, parentElement: { rowIndex } } = cell;
     const newPosition = { x: cellIndex, y: rowIndex };
 
-    if (Math.abs(x - cellIndex) + Math.abs(y - rowIndex) !== 1) {
+    const isMoveable = Math.abs(x - cellIndex) + Math.abs(y - rowIndex) !== 1;
+    if (isMoveable) {
       return;
     }
 
