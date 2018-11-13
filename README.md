@@ -1,2 +1,2 @@
 # Fifteen-puzzle (Пятнашки)
-Demo: http://fifteen-puzzzle.surge.sh
+Demo: https://fifteen-puzzle-z.netlify.com/
